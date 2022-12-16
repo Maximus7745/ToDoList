@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:date="clr-namespace:ToDoList.Data"
+             xmlns:local="clr-namespace:ToDoList;assembly=ToDoList"
+             Title="{local:Translate TasksList}"
+             
+             x:Class="ToDoList.Views.TargetsList">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <date:DateTimeConverter x:Key="dateTimeConverter"/>
+            <date:DateConverter x:Key="dateConverter"/>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout x:Name="stackLayout" BackgroundColor="#303030">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="42.5*"/>
+                    <ColumnDefinition Width="42.5*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label TextColor="White"  Text="{local:Translate Column1}" HorizontalTextAlignment="Center" Grid.Column="0">
+                </Label>
+                <Label TextColor="White"  Text="{local:Translate Column2}" HorizontalTextAlignment="Center" Grid.Column="1">
+                </Label>
+                <Label TextColor="White"  Text="{local:Translate Column3}" HorizontalTextAlignment="Center" Grid.Column="2">
+                </Label>
+            </Grid>
+
+
+
+
+            <ListView x:Name="lv" HasUnevenRows="True" BackgroundColor="#505050" SeparatorColor="White" >
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+
+                        <ViewCell >
+                            <ViewCell.View >
+
+                                <StackLayout>
+                                    <Label TextColor="White" HeightRequest="{Binding DateStart, Converter={StaticResource dateConverter}}" TextDecorations="Underline" BackgroundColor="DarkBlue" ClassId="{Binding Id}"  Text="{Binding DateStart, Converter={StaticResource dateTimeConverter}}">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ClickedDate"></TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Grid >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="42.5*"/>
+                                            <ColumnDefinition Width="42.5*"/>
+                                            <ColumnDefinition Width="15*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto" />
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label TextColor="White"  ClassId="{Binding Id}" FontSize="32" HorizontalTextAlignment="Center"  Text="{Binding Path=TimeStart }" Grid.Column="0" Grid.Row="0">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="ClickedStartTime"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Label TextColor="White"  ClassId="{Binding Id}" FontSize="32" HorizontalTextAlignment="Center"  Text="{Binding Path=TimeEnd }"  Grid.Column="1" Grid.Row="0">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="ClickedEndTime"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <!--<Label TextColor="White"  ClassId="{Binding Id}" HorizontalTextAlignment="Center"  Text="Delete" Grid.Column="2" Grid.Row="0">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="CkickedDelete"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                        </Label>!-->
+                                        <Image HeightRequest="20" WidthRequest="20" ClassId="{Binding Id}" Source="Del.png" Grid.Column="2" Grid.Row="0">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="CkickedDelete"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Label TextColor="White" HorizontalTextAlignment="Center" FontSize="18"  ClassId="{Binding Id}" Text="{Binding Description}"  Grid.ColumnSpan="3" Grid.Row="1">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="ClickedDescription"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Grid>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
+
+            <!--<ListView BackgroundColor="#505050" SeparatorColor="White"   x:Name="listView" >
+                <ListView.ItemTemplate>
+                    <DataTemplate x:Name="dtem">
+                        <ViewCell>
+                            <ViewCell.View >
+                                <Grid>
+                                    <Label TextColor="White"  ClassId="{Binding Id}"  Text="{Binding Date, Converter={StaticResource dateTimeConverter}}" Grid.Column="0">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ClickedDate"></TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label TextColor="White"  ClassId="{Binding Id}"  Text="{Binding Path=TimeStart }"  Grid.Column="1">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ClickedStartTime"></TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label TextColor="White"  ClassId="{Binding Id}"  Text="{Binding Path=TimeEnd }"  Grid.Column="2">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ClickedEndTime"></TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label TextColor="White"  ClassId="{Binding Id}"  Text="Delete" Grid.Column="3">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="CkickedDelete"></TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                    <Label TextColor="White" HorizontalTextAlignment="Center" WidthRequest="20"  ClassId="{Binding Id}" Text="{Binding Description}"  Grid.ColumnSpan="4" Grid.Row="1">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ClickedDescription"></TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>!-->
+            <Button Text="{local:Translate NewTaskButtom}" Clicked="ClickedNewTarget" BackgroundColor="Aqua">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

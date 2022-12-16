@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ToDoList"
+             x:Class="ToDoList.Views.Notes"
+             Title="{local:Translate Notes}">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#303030">
+            <ListView x:Name="listView" ItemSelected="ClickedNote">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80*"></ColumnDefinition>
+                                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding Discribtion}"  TextColor="White" Grid.Column="0"></Label>
+                                    <ImageButton Visual="Material" ClassId="{Binding Id}" Source="Del.png" Grid.Column="1" Clicked="CkickedDelete" />
+                                </Grid>
+
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="{local:Translate NewNote}" TextColor="White" Clicked="CreateNewNote" BackgroundColor="#707070" BorderColor="Black" BorderWidth="3"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
