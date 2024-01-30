@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ToDoList"
+             x:Class="ToDoList.Views.SelectTargetPage"
+             Title="{local:Translate NewTaskButtom}"
+             >
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#303030">
+            <DatePicker TextColor="White" Date="{Binding Path=DateStart }" PropertyChanged="SetMinimumDateEnd" x:Name="datePicker"/>
+            <Label TextColor="White" Text="{local:Translate SelectStartTimeText}"/>
+            <TimePicker TextColor="White" PropertyChanged="ChangedTimePickerStart" Time="{Binding TimeStart}" x:Name="timePickerStart"/>
+            <StackLayout Orientation="Horizontal">
+                <Switch x:Name="swit" IsToggled="{Binding IsSetTimeEnd}" OnColor="White" ThumbColor="Silver"/>
+                <Label Text="{local:Translate SwitchEndTimeText}" TextColor="White"/>
+                <Switch x:Name="replay" IsToggled="{Binding IsReplay}" OnColor="White" ThumbColor="Silver"/>
+                <Label Text="{local:Translate Replay}" TextColor="White"/>
+            </StackLayout>
+            <Label TextColor="White" Text="{local:Translate SelectEndTimeText}"/>
+            <DatePicker TextColor="White" IsEnabled="{Binding Source={x:Reference swit}, Path=IsToggled}" Date="{Binding Path=DateEnd}" x:Name="datePickerEnd"/>
+            <TimePicker IsEnabled="{Binding Source={x:Reference swit}, Path=IsToggled}" TextColor="White" Time="{Binding TimeEnd}" x:Name="timePickerEnd"/>
+            <Editor BackgroundColor="#FFD700" Text="{Binding Description}" x:Name="descriptionEditor"  HeightRequest="200"  />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="{local:Translate SaveButton}" HorizontalOptions="Start" Clicked="SaveNewTarget" />
+                <Button Text="{local:Translate CancelButton}" HorizontalOptions="EndAndExpand"  Clicked="CancelNewTarget" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

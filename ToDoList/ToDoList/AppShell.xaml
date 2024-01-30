@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:views="clr-namespace:ToDoList.Views"
+             xmlns:local="clr-namespace:ToDoList"
+             x:Class="ToDoList.AppShell"
+             
+    
+    
+    >  
+    
+    <NavigationPage.TitleView>
+        <Label Text="To" TextColor="Aqua"/>
+    </NavigationPage.TitleView>
+    <Shell.FlyoutHeader>
+        <StackLayout >
+            <Image Source="ToDoListLogo.png" WidthRequest="100" HorizontalOptions="Start"/>
+            <Label Text="Welcome!!!"/>
+        </StackLayout>
+    </Shell.FlyoutHeader>
+    <Shell.BackgroundColor>
+        #505050
+    </Shell.BackgroundColor>
+    <Shell.FlyoutBackgroundColor>
+        #505050
+    </Shell.FlyoutBackgroundColor>
+    <FlyoutItem Title="{local:Translate TasksList}">
+        <ShellContent Title="{local:Translate TasksList}" ContentTemplate="{DataTemplate views:TargetsList}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="{local:Translate Notes}">
+        <ShellContent ContentTemplate="{DataTemplate views:Notes}"/>
+    </FlyoutItem>
+    <FlyoutItem Title="{local:Translate Setting}">
+        <ShellContent Title="{local:Translate Setting}" ContentTemplate="{DataTemplate views:Setting}"/>
+    </FlyoutItem>
+</Shell>
